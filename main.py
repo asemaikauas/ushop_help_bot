@@ -30,25 +30,12 @@ def main(message):
     GROUP_CHAT_ID = message.chat.id
     print(f"Chat ID: {message.chat.id}")
 
-    conn = sqlite3.connect('ushopbot.sql')
-    cur = conn.cursor()
-
-    cur.execute('CREATE TABLE IF NOT EXISTS users (id int auto_increment primary key, name varchar(50))')
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    # Create InlineKeyboardMarkup object
     markup = InlineKeyboardMarkup()
-
-    # Define your buttons
     button_ru = InlineKeyboardButton("RUS", callback_data='ru')
     button_kz = InlineKeyboardButton("KZ", callback_data='kz')
 
-    # Add buttons to the markup
-    markup.row(button_ru, button_kz)
+    markup.row(button_kz, button_ru)
 
-    # Send the message with buttons
     bot.send_message(message.chat.id,
                      '🤖 Сәлеметсіз бе! Мен Shop Market қолдау ботымын. Мен сізге көмектескім келеді! Қай тілде жауап '
                      'беру керек? \n\n 🤖 Здравствуйте! Я бот поддержки Ushop Market. Хочу вам помочь! На каком языке '
@@ -68,10 +55,8 @@ def handle_query(call):
         send_language_specific_message(chat_id)  # This sends the follow-up message in Kazakh
 
     elif call.data == 'kz':
-        # Set the user's language to Kazakh
         user_language[chat_id] = 'kz'
         bot.answer_callback_query(call.id, "Тіл қазақшаға ауыстырылды.")
-        # Send a confirmation message or continue the conversation in Kazakh
         send_language_specific_message(chat_id)  # This sends the follow-up message in Kazakh
     elif call.data == 'when_deliver_ru' or call.data == 'when_deliver_kz':
         send_delivery_type_options(chat_id, language)
@@ -239,9 +224,7 @@ def handle_all_messages(message):
 
         elif user_data[chat_id]["state"] == ASKING_FOR_NAME:
             user_data[chat_id]["name"] = message.text
-            # Process the return request immediately
             process_return_request(chat_id, user_data[chat_id]["pin"], user_data[chat_id]["name"], username1)
-            # Clear user data after processing
             del user_data[chat_id]
     if chat_id in user2_data:
         if user2_data[chat_id]["state"] == ASKING_FOR_DEVICE:
@@ -265,10 +248,8 @@ def handle_all_messages(message):
 
 
 def send_language_specific_message(chat_id):
-    # Retrieve the user's language preference
     language = user_language.get(chat_id, 'default')
 
-    # Define text and buttons for Russian language
     if language == 'ru':
         text = 'Подскажите, пожалуйста, с чем связан ваш вопрос?\n\nНужно выбрать пункт из меню ниже.'
         markup = InlineKeyboardMarkup()
@@ -284,7 +265,6 @@ def send_language_specific_message(chat_id):
         btn10 = InlineKeyboardButton("🚚 Условия доставки", callback_data='delivery_items_ru')
         btn11 = InlineKeyboardButton("Не нашел(-ла) ответа", callback_data='not_find_ru')
 
-    # Define text and buttons for Kazakh language
     else:
         text = 'Айтыңызшы, Сіздің сұрағыңыз немен байланысты?\n\nТөмендегі мәзірден элементті таңдау керек.'
         markup = InlineKeyboardMarkup()
@@ -300,8 +280,7 @@ def send_language_specific_message(chat_id):
         btn10 = InlineKeyboardButton("🚚 Жеткізу шарттары", callback_data='delivery_items_kz')
         btn11 = InlineKeyboardButton("❓ Жауап таппадым", callback_data='not_find_kz')
 
-    # Default message and buttons if language preference is not set
-    # Send the message with the appropriate text and buttons
+    
     markup.add(btn1)
     if language == 'kz':
         markup.add(btn2)
@@ -336,7 +315,7 @@ def start_device_process(chat_id):
                 'Версия приложения будет в нижней части экрана.\n\n'
                 'Если у вас Android - то необходимо зайти во вкладку Кабинет и сделать свайп вверх.\n'
                 'Версия приложения будет в нижней части экрана.')
-    else:  # Kazakh
+    else:
         text = ('Жақсы, онда қазір техникалық қолдауға қосамын.\n'
                 'Өтінемін, қосымшаңыздың нұсқасын жазыңыз\n\n'
                 'Қосымша нұсқасын қалай табуға болады:\n\n'
@@ -1388,7 +1367,6 @@ def cities_info(chat_id, language):
         btn1 = InlineKeyboardButton('Хорошо', callback_data='thanks_ru')
         btn2 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = (
             "Біз Алматы, Шымкент және Астана қалаларында ашылдық! Өз шеңберімізді кеңейтуді жалғастыратын боламыз және сізді "
             "біздің клиенттеріміздің арасында көргенімізге шын жүректен қуанамыз 😇Біздің жаңалықтарымызды бақылаңыз✨Барлық "
@@ -1413,7 +1391,6 @@ def cooperation_info(chat_id, language):
         btn5 = InlineKeyboardButton('Другое', callback_data='other_cooperation')
         btn6 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = 'Біз әрқашан серіктестікке қуаныштымыз☺️. Сұрағыңыз қандай мәселе бойынша?'
         btn1 = InlineKeyboardButton('Сатушы болғым келеді', callback_data='become_seller')
         btn2 = InlineKeyboardButton('Мен сатушымын және сұрағым бар', callback_data='seller_question')
@@ -1438,7 +1415,6 @@ def become_seller_info(chat_id, language):
         btn1 = InlineKeyboardButton('Понятно', callback_data='thanks_ru')
         btn2 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = (
             "Әріптестік шарттары туралы толығырақ біздің серіктестер сайтынан оқи аласыз: __________ "
             "Егер сізге фулфилмент жүйесі бойынша ынтымақтастық жағдайы ұнайтын болса, ертеңнен бастап сізбен жұмыс істеуге дайынбыз: "
@@ -1465,7 +1441,6 @@ def seller_question(chat_id, language):
         btn1 = InlineKeyboardButton('Хорошо', callback_data='thanks_ru')
         btn2 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = (
             "Жеке кабинетіңізде қолдау қызметімен сөйлесу үшін ыңғайлы чат бар. Хабар жазу үшін жеке кабинеттің төменгі "
             "оң жақ бұрышындағы қызыл белгішені басыңыз.\n"
@@ -1492,7 +1467,6 @@ def ushop_vacancies_info(chat_id, language):
         btn1 = InlineKeyboardButton('Круто, пойду посмотрю', callback_data='thanks_ru')
         btn2 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = (
             "Сіз өз үміткерлігіңізді ұсыну үшін біздің жедел желімізге қоңырау шалуыңызға болады: +7 _______________, "
             "дүйсенбіден жұмаға дейін 9:00-ден 18:00-ге дейін HR бөлімімен кеңесу қызметін таңдаңыз 😊\n"
@@ -1515,7 +1489,6 @@ def reviews_info(chat_id, language):
         btn3 = InlineKeyboardButton('У меня другой вопрос с отзывом', callback_data='other_review_question')
         btn4 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = "Өтінемін, пікірлермен байланысты қандай сұрағыңыз бар екенін айтыңызшы?"
         btn1 = InlineKeyboardButton('Пікірді қалай қалдыруға болады?', callback_data='how_to_review')
         btn2 = InlineKeyboardButton('Неге пікір бірден жарияланбайды?', callback_data='not_published')
@@ -1538,7 +1511,6 @@ def how_to_review_info(chat_id, language):
         )
         btn1 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = (
             "Тауарға пікір қалдыру үшін:\n"
             "– Жеке кабинетті ашу қажет;\n"
@@ -1563,7 +1535,6 @@ def not_published_info(chat_id, language):
         btn1 = InlineKeyboardButton('Хорошо', callback_data='thanks_ru')
         btn2 = InlineKeyboardButton('На главную', callback_data='ru')
     else:
-        # Kazakh translation (or any other language)
         text = (
             "Сіздің тапсырысыңыздың мәртебесі әлі де жеткізілуде, сондықтан әлі пікір жіберу мүмкін емес. Ақпараттың "
             "базада жаңартылуына біраз уақыт қажет. Жақын арада мәртебе жаңартылады, және қалауыңыз бойынша сіз тапсырылған "
