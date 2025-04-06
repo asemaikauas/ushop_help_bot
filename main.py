@@ -9,6 +9,7 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 load_dotenv()
 TOKEN = os.getenv("TELEGRAM_API_KEY")
 bot = telebot.TeleBot(TOKEN)
+bot.remove_webhook()
 
 user_language = {}
 
