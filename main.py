@@ -1,12 +1,15 @@
 import types
-
+from dotenv import load_dotenv
+import os 
 import telebot
 import sqlite3
 
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-TOKEN = '6771413468:AAGYVZB1LV5YoGpFPMsq4ooP2uTd-ytSNPI'
+load_dotenv()
+TOKEN = os.getenv("TELEGRAM_API_KEY")
 bot = telebot.TeleBot(TOKEN)
+
 user_language = {}
 
 ASKING_FOR_PIN, ASKING_FOR_NAME = range(2)
