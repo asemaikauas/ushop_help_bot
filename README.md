@@ -1,11 +1,7 @@
 <a id="readme-top"></a>
 
-<!-- PROJECT LOGO -->
-<br />
 <div align="center">
-
   <h3 align="center">Ushop Support Bot</h3>
-
   <p align="center">
     Bilingual Telegram assistant that helps users resolve order, payment, and return issues by guiding them through a dynamic menu while routing complex queries to human managers
     <br />
@@ -92,19 +88,18 @@ You’ll need:
 
 2. Pip install pyTelegramBotAPI
 
-
 3. Create a `.env` file in the root directory with your bot token:
-TELEGRAM_API_KEY=your-telegram-bot-token-here
-
+   
+   ```bash
+   TELEGRAM_API_KEY=your_bot_token_key
+   ```
 
 4. Run the bot:
+   
+   ```bash
+   python bot.py 
+   ```
 
-python bot.py
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
----
 
 ## Usage
 
@@ -164,13 +159,11 @@ Contributions are what make the open source world amazing!
 ## Contact
 
 Asemai – kauasasemai05@gmail.com  
-Project Link: [debatelink](https://github.com/asemaikauas/debatelink)
+Project Link: [ushop_bot](https://github.com/asemaikauas/debatelink)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ---
-
-## Acknowledgments
 
 ## Acknowledgments
 
