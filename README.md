@@ -122,7 +122,7 @@ You’ll need:
 
 Watch a quick walkthrough of the application:
 
-[[Watch the demo]](https://youtu.be/5MQqVLDl57s)
+[Watch the demo](https://youtu.be/5MQqVLDl57s)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
