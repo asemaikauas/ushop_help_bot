@@ -93,18 +93,21 @@ You’ll need:
     source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. pip install pyTelegramBotAPI
-
+3. Install necessary packages:
+    ```bash
+    pip install pyTelegramBotAPI
+    pip install dotenv 
+    ```
 4. Create a `.env` file in the root directory with your bot token:
    
    ```bash
    TELEGRAM_API_KEY=your_bot_token_key
    ```
 
-4. Run the bot:
+5. Run the bot:
    
    ```bash
-   python bot.py 
+   python3 main.py 
    ```
 
 
