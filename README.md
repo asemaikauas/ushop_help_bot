@@ -86,9 +86,16 @@ You’ll need:
    cd ushop-help-bot
    ```
 
-2. Pip install pyTelegramBotAPI
+2. Set up a virtual environment
 
-3. Create a `.env` file in the root directory with your bot token:
+   ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. pip install pyTelegramBotAPI
+
+4. Create a `.env` file in the root directory with your bot token:
    
    ```bash
    TELEGRAM_API_KEY=your_bot_token_key
