@@ -8,7 +8,7 @@
     <br />
     <a href="https://t.me/ushop_help_bot">Test Bot</a>
     <br />
-    <a href="https://youtu.be/-zIKTPEdKto">View Demo</a>
+    <a href="https://youtu.be/5MQqVLDl57s">View Demo</a>
   </p>
 </div>
 
@@ -122,7 +122,7 @@ You’ll need:
 
 Watch a quick walkthrough of the application:
 
-[![Watch the demo](https://img.youtube.com/vi/-zIKTPEdKto/maxresdefault.jpg)](https://youtu.be/-zIKTPEdKto)
+[![Watch the demo](https://img.youtube.com/vi/5MQqVLDl57s/maxresdefault.jpg)](https://youtu.be/5MQqVLDl57s)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
