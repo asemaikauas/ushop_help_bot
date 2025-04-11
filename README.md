@@ -42,7 +42,7 @@
 ## About The Project
 
 
-**Ushop Market Support Bot** is a multilingual Telegram bot that provides automated customer support for Ushop Market users in Kazakh and Russian. It helps customers resolve common issues related to orders, deliveries, payments, returns, and promotions, while routing complex queries to human managers.
+**Ushop Market Support Bot** is a Telegram bot that provides automated customer support for Ushop Market users in Kazakh and Russian. It helps customers resolve common issues related to orders, deliveries, payments, returns, and promotions, while routing complex queries to human managers.
 
 It includes: 
 - Language Selection: Supports both Kazakh and Russian.
@@ -122,7 +122,7 @@ You’ll need:
 
 Watch a quick walkthrough of the application:
 
-[![Watch the demo](https://img.youtube.com/vi/5MQqVLDl57s/maxresdefault.jpg)](https://youtu.be/5MQqVLDl57s)
+[[Watch the demo]](https://youtu.be/5MQqVLDl57s)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
